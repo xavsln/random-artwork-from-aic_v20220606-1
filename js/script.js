@@ -13,22 +13,41 @@ let artWorkRepository = (function () {
 
 // let artWorkListUrl2 = 'https://api.artic.edu/api/v1/artworks/search?q=landscapes&query[term][is_public_domain]=true&limit=20;'
 
-let nbOfPagesAvailableInApi = 11614; // Number of pages available in the API as per the 2022-06-06
-let artWorkToShow = 10; // number of Artwork to show
-let randomPageSelection = Math.round(Math.random()*nbOfPagesAvailableInApi);
-
-let randomPageArtWorkListUrl = "https://api.artic.edu/api/v1/artworks?page="+randomPageSelection+"&limit="+artWorkToShow;
-
-console.log(randomPageArtWorkListUrl);
+// let nbOfPagesAvailableInApi = 11614; // Number of pages available in the API as per the 2022-06-06
+// let artWorkToShow = 10; // number of Artwork to show
+// let randomPageSelection = Math.round(Math.random()*nbOfPagesAvailableInApi);
+//
+// let randomPageArtWorkListUrl = "https://api.artic.edu/api/v1/artworks?page="+randomPageSelection+"&limit="+artWorkToShow;
+//
+// console.log(randomPageArtWorkListUrl);
 
 let artWorkList = [];
+
+let nbOfPagesAvailableInApi = 11614; // Number of pages available in the API as per the 2022-06-06
+let artWorkToShow = 10; // number of Artwork to show
+
+let randomPageUrl = '';
+
+function createRandomPageArtWorkListUrl (){
+
+  let randomPageSelection = Math.round(Math.random()*nbOfPagesAvailableInApi);
+
+  let randomPageArtWorkListUrl = "https://api.artic.edu/api/v1/artworks?page="+randomPageSelection+"&limit="+artWorkToShow;
+
+  randomPageUrl = randomPageArtWorkListUrl;
+
+  return randomPageUrl;
+}
+
 
 // We fetch data from the AIC API end point and create a JavaScript Object containing the data
 // Then we select the data key that contains the Array of artWorks
 
 function loadList(){
 
-  return fetch(randomPageArtWorkListUrl).then(response => response.json()).then(dataObject => {
+  createRandomPageArtWorkListUrl ();
+
+  return fetch(randomPageUrl).then(response => response.json()).then(dataObject => {
     console.log(dataObject);
     console.log(dataObject.data);
     dataObject.data.forEach(item => {
@@ -97,6 +116,12 @@ function getAll(){
   return artWorkList;
 }
 
+// This function is activated only in case User wants to see more (last ten items add)
+function getMore(){
+  let latestArtworkList = artWorkList.slice(-10);
+  artWorkList = latestArtworkList;
+  return artWorkList;
+}
 
 
   // We define modalContainer which is the EXISTING #modal-container of our html
@@ -182,7 +207,8 @@ function getAll(){
   return {
     getAll: getAll,
     addListItem: addListItem,
-    loadList: loadList
+    loadList: loadList,
+    getMore: getMore
   }
 })();
 
@@ -199,9 +225,18 @@ artWorkRepository.loadList().then(function() {
 
 let buttonRefreshList = document.querySelector('#button-refresh-list');
 
-buttonRefreshList.addEventListener("click", refreshArtworkList);
+buttonRefreshList.addEventListener("click", loadMore);
 
+// Function that would refresh the page when user clicks on the related button
 function refreshArtworkList() {
   // alert("Hello World");
   window.location.reload();
+}
+
+function loadMore(){
+  artWorkRepository.loadList().then(function() {
+    artWorkRepository.getMore().forEach(function(artwork){
+      return artWorkRepository.addListItem(artwork);
+    });
+  });
 }
