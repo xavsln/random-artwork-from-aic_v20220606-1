@@ -6,6 +6,16 @@ html, body {
 }
 
 
+
+/* .navbar {
+  max-height: 100px;
+} */
+
+#logo-random-artwork {
+  height: 70px;
+}
+
+
 /*===============================================*/
 /* MODAL STYLING (STARTS)
 /*-----------------------------------------------*/
