@@ -221,9 +221,9 @@ artWorkRepository.loadList().then(function() {
 });
 
 
-// We implement the refresh list function associated to the button-refresh-list
+// We implement the refresh list function associated to the button-see-more
 
-let buttonRefreshList = document.querySelector('#button-refresh-list');
+let buttonRefreshList = document.querySelector('#button-see-more');
 
 buttonRefreshList.addEventListener("click", loadMore);
 
