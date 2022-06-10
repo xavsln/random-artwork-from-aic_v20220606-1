@@ -85,23 +85,41 @@ function loadList(){
 };
 
   function addListItem(artwork){
-    let listArtwork = document.querySelector('.artwork-list');
+    // let listArtwork = document.querySelector('.artwork-list');
+    // We define the container for the artworks
+    // let containerArtworks = $('.artworks-container');
+    let containerArtworks = $('.row-artworks');
 
-    let listItem = document.createElement('li');
+    // let listItem = document.createElement('li');
+    // We create button elements for each arwork
+    // let buttonArtworks = $('<button class="btn"></button>');
+    // buttonArtworks.append('<h1>'+artwork.artistName+'</h1>' + '<p>'+artwork.artworkTitle+'</p>'+'<img class="buttonImg" src='+artwork.imageUrl+'>')
+    // console.log("The name of the button: "+artwork.artistName);
 
-    // Create a button and add it to the DOM
-    let button = document.createElement('button');
-    button.innerHTML = '<h1>'+artwork.artistName+'</h1>' + '<p>'+artwork.artworkTitle+'</p>'+'<img class="buttonImg" src='+artwork.imageUrl+'>';
+
+    let buttonArtworks = $('<div class="btn col-lg-3 align-top" style="border: 2px solid blue;"></div>');
+    buttonArtworks.append('<h1>'+artwork.artistName+'</h1>' + '<p>'+artwork.artworkTitle+'</p>'+'<img class="buttonImg" src='+artwork.imageUrl+'>')
     console.log("The name of the button: "+artwork.artistName);
 
-    // We add a class to our button to style it
-    button.classList.add('btn');
-    listItem.appendChild(button);
 
-    listArtwork.appendChild(listItem);
+    // Create a button and add it to the DOM
+    // let button = document.createElement('button');
+    // button.innerHTML = '<h1>'+artwork.artistName+'</h1>' + '<p>'+artwork.artworkTitle+'</p>'+'<img class="buttonImg" src='+artwork.imageUrl+'>';
+    // console.log("The name of the button: "+artwork.artistName);
+
+    // We add a class to our button to style it
+    // buttonArtworks.addClass('btn');
+    containerArtworks.append(buttonArtworks);
+
+    // listItem.appendChild(button);
+
+    // listArtwork.appendChild(listItem);
 
     // Add an event listener to our button element
-    button.addEventListener('click', function(){
+    // buttonArtworks.addEventListener('click', function(){
+    //   showDetails(artwork);
+    // })
+    buttonArtworks.on('click', function(){
       showDetails(artwork);
     })
   }

@@ -13,8 +13,8 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">
         <img src="img/logo-random-artwork-aic.png" class="image-fluid" id="logo-random-artwork" alt="Logo Random Artwork AIC">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">About</a>
@@ -47,7 +47,11 @@
     <p>It makes use of the API provided by the AIC.</p>
 
     <div id="modal-container"></div>
-    <ul class="artwork-list"></ul>
+
+    <!-- <ul class="artwork-list"></ul> -->
+    <div class="artworks-container">
+      <div class="row-artworks"></div>
+    </div>
 
     <!-- Button to show more Artworks on the same page -->
     <button class="btn btn-primary" type="button" id="button-see-more">See more Artwork</button>
