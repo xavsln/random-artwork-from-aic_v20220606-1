@@ -97,7 +97,7 @@ function loadList(){
     // console.log("The name of the button: "+artwork.artistName);
 
 
-    let buttonArtworks = $('<div class="btn col-lg-3 align-top" style="border: 2px solid blue;"></div>');
+    let buttonArtworks = $('<div class="btn btn-artwork col-lg-3 align-top" style="border: 2px solid blue;"></div>');
     buttonArtworks.append('<h1>'+artwork.artistName+'</h1>' + '<p>'+artwork.artworkTitle+'</p>'+'<img class="buttonImg" src='+artwork.imageUrl+'>')
     console.log("The name of the button: "+artwork.artistName);
 
