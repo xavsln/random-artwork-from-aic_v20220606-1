@@ -59,10 +59,10 @@ function loadList(){
 
       // We build the link to the AIC corresponding page
       let artworkId = item.id;
-      console.log('The item id: '+artworkId);
+      // console.log('The item id: '+artworkId);
       let aicUrlStart = 'https://www.artic.edu/artworks/';
       let builtUrlforAicPage = aicUrlStart + artworkId;
-      console.log(builtUrlforAicPage);
+      // console.log(builtUrlforAicPage);
 
       let artWork = {
         artistName: item.artist_title,
@@ -90,16 +90,27 @@ function loadList(){
     // let containerArtworks = $('.artworks-container');
     let containerArtworks = $('.row-artworks');
 
-    // let listItem = document.createElement('li');
+    let listItem = $('<div class="col-xl-3 col-lg-4 col-md-6 list-item text-center"></div>');
+    // containerArtworks.append(listItem);
+
     // We create button elements for each arwork
     // let buttonArtworks = $('<button class="btn"></button>');
     // buttonArtworks.append('<h1>'+artwork.artistName+'</h1>' + '<p>'+artwork.artworkTitle+'</p>'+'<img class="buttonImg" src='+artwork.imageUrl+'>')
     // console.log("The name of the button: "+artwork.artistName);
 
 
-    let buttonArtworks = $('<div class="btn btn-artwork col-lg-3 align-top" style="border: 2px solid blue;"></div>');
-    buttonArtworks.append('<h1>'+artwork.artistName+'</h1>' + '<p>'+artwork.artworkTitle+'</p>'+'<img class="buttonImg" src='+artwork.imageUrl+'>')
-    console.log("The name of the button: "+artwork.artistName);
+    // let buttonArtworks = $('<div class="btn btn-artwork col-lg-3 align-top" style="border: 2px solid blue;"></div>');
+    let buttonArtworks = $('<button type="button" class="btn btn-artwork align-top" data-toggle="modal" data-target="#artworkModalCenter"></button>');
+
+    // buttonArtworks.append('<h1>'+artwork.artistName+'</h1>' + '<p>'+artwork.artworkTitle+'</p>'+'<img class="buttonImg img-fluid" src='+artwork.imageUrl+'>');
+    buttonArtworks.append('<h1>'+artwork.artistName+'</h1>');
+    buttonArtworks.append('<p>'+artwork.artworkTitle+'</p>');
+
+    let imageElement = $('<img class="buttonImg img-fluid mx-auto d-block" style="height:100%">');
+    imageElement.attr('src', artwork.imageUrl);
+
+    buttonArtworks.append(imageElement);
+    // console.log("The name of the button: "+artwork.artistName);
 
 
     // Create a button and add it to the DOM
@@ -109,7 +120,9 @@ function loadList(){
 
     // We add a class to our button to style it
     // buttonArtworks.addClass('btn');
-    containerArtworks.append(buttonArtworks);
+    listItem.append(buttonArtworks);
+    containerArtworks.append(listItem);
+
 
     // listItem.appendChild(button);
 
@@ -141,86 +154,51 @@ function getMore(){
   return artWorkList;
 }
 
-
-  // We define modalContainer which is the EXISTING #modal-container of our html
-  let modalContainer = document.querySelector('#modal-container');
-  function showModal(artwork){
-
-    // We define a modal as a <div> that will be CREATED in this JS file
-    modalContainer.innerHTML = '';
-
-    // We create a close button element that will trigger the hideModal function of the modal
-    let modalCloseButton = document.createElement('button');
-    modalCloseButton.innerHTML = 'close';
-    modalCloseButton.classList.add('modal-close');
-    modalCloseButton.addEventListener('click', hideModal);
-
-    // We create a new div for our Modal
-    let modal = document.createElement('div');
-    // # We add a class to this modal to give it some styling
-    modal.classList.add('modal');
-
-    // # We define the content of our modal
-    // ## We define and create the h1 of our modal that will contain the name of the Artwork
-    let modalTitle = document.createElement('h1');
-    modalTitle.innerText = artwork.artistName.toUpperCase();
-
-    // ## We define and create the p of our modal that will contain the title of the Artwork
-    let modalArtworkTitle = document.createElement('p');
-    modalArtworkTitle.innerText = artwork.artworkTitle;
-
-    // ## We define and create the <img> of our modal
-    let modalImg = document.createElement('img');
-    modalImg.src = artwork.imageUrl;
-    modalImg.classList.add('modal-img');
-
-    // ## We define and create the http link to the AIC webpage of the artwork
-    let modalLinkToAic = document.createElement('a');
-    modalLinkToAic.href = artwork.artWorkLinkToAic;
-    modalLinkToAic.target = '_blank';
-    modalLinkToAic.innerText = 'Link to the Artwork page on AIC'
-    modalLinkToAic.classList.add('modalLinkToAic');
+// Show artworks in the modal using Bootstrap modal
 
 
 
-    // We append our created elements to the modal
-    modal.appendChild(modalCloseButton);
-    modal.appendChild(modalTitle);
-    modal.appendChild(modalArtworkTitle);
-    modal.appendChild(modalImg);
-    modal.appendChild(modalLinkToAic);
-    // modal.appendChild(modalTypes);
-    // We append our modal to our modalContainer
-    modalContainer.appendChild(modal);
+function showModal(artwork){
+  // We define the elements that will go inside each artwork's modal
 
-    // We display the content of our modal
-    modalContainer.classList.add('is-visible');
+  let modalTitleArtistName = $('#artworkModalCenterArtistName');
+  modalTitleArtistName.empty();
 
-    // console.log(artwork);
+  let artistNameElement = $('<h5>' + artwork.artistName.toUpperCase() + '</h5>');
+  modalTitleArtistName.append(artistNameElement);
 
-  }
 
-  function hideModal(){
-    let modalContainer = document.querySelector('#modal-container');
-    modalContainer.classList.remove('is-visible');
-  }
+  let modalArtworkTitle = $('#artworkModalCenterTitle');
+  modalArtworkTitle.empty();
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-      hideModal();
-    }
+  let artworkTitleElement = $('<h6>' + artwork.artworkTitle + '</h6>');
+  modalArtworkTitle.append(artworkTitleElement);
+
+
+  let modalArtworkImage = $('#artworkModalImage');
+  modalArtworkImage.empty();
+
+  let artworkImageElement =   $('<img class="modal-img mx-auto d-block" style="width:70%">');
+  // artworkImageElement.empty();
+  artworkImageElement.attr('src', artwork.imageUrl);
+  modalArtworkImage.append(artworkImageElement);
+
+
+  let modalLinkToAic = $('#artwork-modal-link-aic');
+  modalLinkToAic.empty();
+  let urlToArtworkOnAic = $('<a href='+artwork.artWorkLinkToAic+' target="_blank">Link to AIC</a>');
+  modalLinkToAic.append(urlToArtworkOnAic);
+
+
+  let btnArtworkLinkToAic = $('#btn-artwork-link-to-aic');
+  btnArtworkLinkToAic.on('click', function(){
+    alert(urlToArtworkOnAic);
+    // This would return an Object... Do not understand why?
+    // I would like to have the url of the AIC page...
+    // I tried with this but it does not work
   });
 
-  modalContainer.addEventListener('click', (e) => {
-    // Since this is also triggered when clicking INSIDE the modal
-    // We only want to close if the user clicks directly on the overlay
-    let target = e.target;
-    if (target === modalContainer) {
-      hideModal();
-    }
-  });
-
-
+}
 
   return {
     getAll: getAll,
@@ -239,17 +217,20 @@ artWorkRepository.loadList().then(function() {
 });
 
 
-// We implement the refresh list function associated to the button-see-more
+// We implement a see more event listener associated to the button-see-more'
+let buttonSeeMore = $('#button-see-more');
+buttonSeeMore.on("click", loadMore);
 
-let buttonRefreshList = document.querySelector('#button-see-more');
-
-buttonRefreshList.addEventListener("click", loadMore);
-
-// Function that would refresh the page when user clicks on the related button
-function refreshArtworkList() {
-  // alert("Hello World");
+// We implement the refresh list event listener associated to the button-refresh-list'
+$('#button-refresh-list').on('click', function(){
   window.location.reload();
-}
+});
+
+// // Function that would refresh the page when user clicks on the related button
+// function refreshArtworkList() {
+//   // alert("Hello World");
+//   window.location.reload();
+// }
 
 function loadMore(){
   artWorkRepository.loadList().then(function() {
