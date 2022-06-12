@@ -90,7 +90,7 @@ function loadList(){
     // let containerArtworks = $('.artworks-container');
     let containerArtworks = $('.row-artworks');
 
-    let listItem = $('<div class="col-xl-3 col-lg-4 col-md-6 list-item text-center"></div>');
+    let listItem = $('<div class="col-xl-3 col-lg-4 col-md-6 list-item text-center shadow-sm rounded"></div>');
     // containerArtworks.append(listItem);
 
     // We create button elements for each arwork
