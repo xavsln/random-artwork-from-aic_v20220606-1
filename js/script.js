@@ -183,20 +183,8 @@ function showModal(artwork){
   artworkImageElement.attr('src', artwork.imageUrl);
   modalArtworkImage.append(artworkImageElement);
 
-
-  let modalLinkToAic = $('#artwork-modal-link-aic');
-  modalLinkToAic.empty();
-  let urlToArtworkOnAic = $('<a href='+artwork.artWorkLinkToAic+' target="_blank">Link to AIC</a>');
-  modalLinkToAic.append(urlToArtworkOnAic);
-
-
   let btnArtworkLinkToAic = $('#btn-artwork-link-to-aic');
-  btnArtworkLinkToAic.on('click', function(){
-    alert(urlToArtworkOnAic);
-    // This would return an Object... Do not understand why?
-    // I would like to have the url of the AIC page...
-    // I tried with this but it does not work
-  });
+  btnArtworkLinkToAic.attr('href', artwork.artWorkLinkToAic);
 
 }
 
