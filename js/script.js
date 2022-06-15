@@ -79,9 +79,15 @@ function loadList(){
   });
 
   function add(artWork){
+    console.log(artWork)
+    if (artWork.artistName === null) {
+      artWork.artistName = "Unknown Artist";
+      // console.log('There is a missing data');
+      artWorkList.push(artWork);
+    } else {
     artWorkList.push(artWork);
+    }
   }
-
 };
 
   function addListItem(artwork){
@@ -143,9 +149,9 @@ function loadList(){
   }
 
 
-function getAll(){
-  return artWorkList;
-}
+  function getAll(){
+    return artWorkList;
+  }
 
 // This function is activated only in case User wants to see more (last ten items add)
 function getMore(){
