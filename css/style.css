@@ -2,20 +2,14 @@
   border: 2px solid blue;
 } */
 
-html, body {
-  height: 100%;
-  width: 100%;
+body {
+  min-height: 100%;
   background-color: lightgrey;
-  /* background-color: #E8FDFF; */
 }
 
 main {
   margin-top: 120px;
 }
-
-/* .navbar {
-  max-height: 100px;
-} */
 
 #logo-random-artwork {
   height: 70px;
@@ -43,6 +37,15 @@ main {
   margin: 50px auto;
   width: 80%;
   padding: 10px;
+}
+
+footer {
+  /* position: absolute; */
+  right: 0;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid darkgrey;
+  margin-top: 120px;
 }
 
 
