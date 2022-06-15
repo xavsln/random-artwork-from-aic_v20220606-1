@@ -21,21 +21,23 @@ main {
   height: 70px;
 }
 
-.listItem {
-  margin: 5px auto;
-  width: 90%;
-  max-height: 500px;
+.list-item {
+  cursor: pointer;
 }
 
-.btn-artwork {
-  cursor: pointer;
+.list-item:hover {
+  background-color:rgba(0,0,0,0.2);
+}
+
+
+.btn-artwork:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .buttonImg {
   max-height: 350px;
 }
-
-
 
 .buttons-area {
   margin: 50px auto;
