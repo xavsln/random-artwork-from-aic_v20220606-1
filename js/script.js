@@ -106,7 +106,7 @@ function loadList(){
     buttonArtworks.append('<h1>'+artwork.artistName+'</h1>');
     buttonArtworks.append('<p>'+artwork.artworkTitle+'</p>');
 
-    let imageElement = $('<img class="buttonImg img-fluid mx-auto d-block" style="height:100%">');
+    let imageElement = $('<img class="buttonImg img-fluid mx-auto d-block">');
     imageElement.attr('src', artwork.imageUrl);
 
     buttonArtworks.append(imageElement);

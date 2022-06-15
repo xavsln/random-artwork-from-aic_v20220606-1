@@ -21,25 +21,24 @@ main {
   height: 70px;
 }
 
-.btn-artwork {
-  /* max-width: 300px; */
-  max-height: 500px;
-  cursor: pointer;
-}
-
 .listItem {
   margin: 5px auto;
   width: 90%;
-  max-height: 300px;
+  max-height: 500px;
 }
+
+.btn-artwork {
+  cursor: pointer;
+}
+
+.buttonImg {
+  max-height: 350px;
+}
+
+
 
 .buttons-area {
   margin: 50px auto;
   width: 80%;
   padding: 10px;
-}
-
-.buttonImg {
-  max-width: 200px;
-  max-height: 100%;
 }
