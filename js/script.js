@@ -21,6 +21,9 @@ let artWorkRepository = (function() {
   //
   // console.log(randomPageArtWorkListUrl);
 
+  const loadingMessage = $("#loading-message-placeholder");
+  const loadingMessageButton = $("#loading-message-button-placeholder");
+
   let artWorkList = [];
 
   let nbOfPagesAvailableInApi = 11614; // Number of pages available in the API as per the 2022-06-06
@@ -49,6 +52,7 @@ let artWorkRepository = (function() {
 
   function loadList() {
     createRandomPageArtWorkListUrl();
+    showLoadingMessage(loadingMessage);
 
     return fetch(randomPageUrl)
       .then(response => response.json())
@@ -80,6 +84,7 @@ let artWorkRepository = (function() {
             artWorkLinkToAic: builtUrlforAicPage
           };
           add(artWork);
+          hideLoadingMessage(loadingMessage);
         });
       });
 
@@ -197,11 +202,33 @@ let artWorkRepository = (function() {
     btnArtworkLinkToAic.attr("href", artwork.artWorkLinkToAic);
   }
 
+  function loadMore() {
+    showLoadingMessage(loadingMessageButton);
+    loadList().then(function() {
+      getMore().forEach(function(artwork) {
+        hideLoadingMessage(loadingMessageButton);
+        return addListItem(artwork);
+      });
+    });
+  }
+
+  function showLoadingMessage(messageLocation) {
+    messageLocation.text("LOADING... Please wait...");
+    messageLocation.prepend(
+      '<img id="loading-spinner-icon" src="./img/spinner.gif" />'
+    );
+  }
+
+  function hideLoadingMessage(messageLocation) {
+    messageLocation.empty();
+  }
+
   return {
     getAll: getAll,
     addListItem: addListItem,
     loadList: loadList,
-    getMore: getMore
+    getMore: getMore,
+    loadMore: loadMore
   };
 })();
 
@@ -214,7 +241,7 @@ artWorkRepository.loadList().then(function() {
 
 // We implement a see more event listener associated to the button-see-more'
 let buttonSeeMore = $("#button-see-more");
-buttonSeeMore.on("click", loadMore);
+buttonSeeMore.on("click", artWorkRepository.loadMore);
 
 // We implement the refresh list event listener associated to the button-refresh-list'
 $("#button-refresh-list").on("click", function() {
@@ -227,10 +254,11 @@ $("#button-refresh-list").on("click", function() {
 //   window.location.reload();
 // }
 
-function loadMore() {
-  artWorkRepository.loadList().then(function() {
-    artWorkRepository.getMore().forEach(function(artwork) {
-      return artWorkRepository.addListItem(artwork);
-    });
-  });
-}
+// function loadMore() {
+//   // artWorkRepository.showLoadingMessage(artWorkRepository.loadingMessageButton);
+//   artWorkRepository.loadList().then(function() {
+//     artWorkRepository.getMore().forEach(function(artwork) {
+//       return artWorkRepository.addListItem(artwork);
+//     });
+//   });
+// }

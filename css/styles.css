@@ -21,6 +21,16 @@ main {
   height: 70px;
 }
 
+#loading-message-placeholder {
+  text-align: center;
+}
+
+#loading-spinner-icon {
+  width: 25px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
 .list-item {
   cursor: pointer;
 }
