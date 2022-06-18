@@ -187,7 +187,7 @@ let artWorkRepository = (function() {
     modalArtworkImage.empty();
 
     let artworkImageElement = $(
-      '<img class="modal-img mx-auto d-block" style="width:70%">'
+      '<img class="modal-img mx-auto d-block" style="width:50%">'
     );
     // artworkImageElement.empty();
     artworkImageElement.attr("src", artwork.imageUrl);
