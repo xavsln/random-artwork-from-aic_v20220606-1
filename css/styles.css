@@ -20,9 +20,8 @@ main {
 }
 
 .list-item:hover {
-  background-color:rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
-
 
 .btn-artwork:focus {
   outline: none;
@@ -48,13 +47,12 @@ footer {
   margin-top: 120px;
 }
 
-
 /* =================================================================================================== */
 /* ABOUT PAGE */
 /* =================================================================================================== */
 
 .about-section {
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   margin-top: 30px;
   padding: 10px;

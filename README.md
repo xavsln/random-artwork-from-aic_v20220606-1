@@ -1,4 +1,5 @@
 # App description:
+
 This is a simple JavaScript App that shows Artworks on a single page.
 
 These Artworks are fetched from the Art Institute of Chicago API (AIC API).
@@ -14,12 +15,15 @@ User can click on an Artwork displayed on the main page to see a larger image an
 This is a great way to get to discover Artworks and Artists!
 
 # App dependencies:
+
 - JavaScript
 - Bootstrap
 - jQuery
 
 # API used:
+
 - Art Institute of Chicago API (AIC API)
 
 # Link to Website:
+
 [Random Artwork from AIC](https://xavsln.github.io/random-artwork-from-aic_v20220606-1/)
